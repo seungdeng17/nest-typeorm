@@ -1,3 +1,1 @@
 # nest-typeorm
-
-test

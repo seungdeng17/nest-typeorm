@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 // 요청, 응답에 대해서는 모름
 @Injectable()
 export class AppService {
-  async getUser() {
-    // 트랜잭션 단위의 비지니스 로직
-    // const user = await User.findOne();
-    // return user;
-    return 'hello user';
+  constructor(private readonly configService: ConfigService) {}
+
+  getHello() {
+    return this.configService.get('SECRET');
   }
 }

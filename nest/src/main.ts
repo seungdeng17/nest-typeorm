@@ -4,10 +4,11 @@ import { AppModule } from './app.module';
 declare const module: any;
 
 async function bootstrap() {
-  const PORT = 3000;
   const app = await NestFactory.create(AppModule);
+
+  const PORT = process.env.PORT || 3030;
   await app.listen(PORT);
-  console.log(`Listening on port ${PORT}`);
+  console.log(`server listening on port ${PORT}`);
 
   if (module.hot) {
     module.hot.accept();

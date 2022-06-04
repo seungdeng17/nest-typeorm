@@ -8,13 +8,13 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UserDto } from 'src/common/dto/user.dto';
+import { User } from '../common/decorators/user.decorator';
 
 @ApiTags('USER')
 @Controller('api/users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @ApiOperation({ summary: '내 정보 조회' })
   @ApiResponse({
     status: 200,
     description: '성공',
@@ -24,9 +24,10 @@ export class UsersController {
     status: 500,
     description: '서버 에러',
   })
+  @ApiOperation({ summary: '내 정보 조회' })
   @Get()
-  getUsers(@Req() req) {
-    return req.user;
+  getUsers(@User() user) {
+    return user;
   }
 
   @ApiOperation({ summary: '회원가입' })
@@ -39,14 +40,14 @@ export class UsersController {
     );
   }
 
-  @ApiOperation({ summary: '로그인' })
   @ApiOkResponse({
     description: '성공',
     type: UserDto,
   })
+  @ApiOperation({ summary: '로그인' })
   @Post('login')
-  logIn(@Req() req) {
-    return req.user;
+  logIn(@User() user) {
+    return user;
   }
 
   @ApiOperation({ summary: '로그아웃' })

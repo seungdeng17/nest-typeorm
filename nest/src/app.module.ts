@@ -3,6 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerMiddleware } from './middleware/logger.middleware';
+import { UsersModule } from './users/users.module';
+import { WorkspacesModule } from './workspaces/workspaces.module';
+import { ChannelsModule } from './channels/channels.module';
+import { DmsModule } from './dms/dms.module';
 
 @Module({
   imports: [
@@ -11,6 +15,10 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
       envFilePath:
         process.env.NODE_ENV == 'dev' ? '.env.development' : '.env.production',
     }),
+    UsersModule,
+    WorkspacesModule,
+    ChannelsModule,
+    DmsModule,
   ],
   controllers: [AppController],
   providers: [ConfigService, AppService],

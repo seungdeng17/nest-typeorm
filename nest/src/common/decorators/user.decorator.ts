@@ -6,3 +6,5 @@ export const User = createParamDecorator(
     return req.user;
   },
 );
+
+// @User() User으로 사용 (@Res res 사용 막을 수 있음)

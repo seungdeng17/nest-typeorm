@@ -1,6 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TestService } from './test.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 
@@ -13,7 +14,19 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, ConfigService],
+  providers: [
+    ConfigService,
+    AppService,
+    TestService,
+    // {
+    //   provide: TestService,
+    //   useClass: TestService,
+    // },
+    {
+      provide: 'CUSTOM_KEY',
+      useValue: 'CUSTOM_VALUE',
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

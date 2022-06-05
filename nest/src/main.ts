@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import passport from 'passport';
@@ -9,7 +10,9 @@ declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = process.env.PORT || 3030;
+  const configService = app.get<ConfigService>(ConfigService);
+
+  const port = configService.get('PORT') || 3030;
 
   const config = new DocumentBuilder()
     .setTitle('Sleact API')
@@ -25,7 +28,7 @@ async function bootstrap() {
     session({
       resave: false,
       saveUninitialized: false,
-      secret: process.env.COOKIE_SECRET,
+      secret: configService.get('COOKIE_SECRET'),
       cookie: {
         httpOnly: true,
       },

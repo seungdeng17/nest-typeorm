@@ -19,9 +19,8 @@ import * as ormconfig from '../ormconfig';
     ChannelsModule,
     DmsModule,
   ],
-  controllers: [AppController],
   providers: [AppService],
-  exports: [],
+  controllers: [AppController],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

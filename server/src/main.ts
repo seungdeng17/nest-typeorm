@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import { HttpExceptionFilter } from '../src/common/httpExceptionFilter/http-exception.filter';
 
 declare const module: any;
 
@@ -23,6 +24,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
+  app.useGlobalFilters(new HttpExceptionFilter());
   app.use(cookieParser());
   app.use(
     session({

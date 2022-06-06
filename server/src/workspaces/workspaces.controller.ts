@@ -27,7 +27,10 @@ export class WorkspacesController {
   createWorkspace(@User() user: Users, @Body() body: CreateWorkspaceDto) {}
 
   @Get(':url/members')
-  getAllMembersFromWorkspace() {}
+  async getAllMembersFromWorkspace(@Param() param) {
+    const { url } = param;
+    return await this.workspacesService.getWorkspaceMembers(url);
+  }
 
   @Post(':url/members')
   inviteMembersToWorkspace() {}

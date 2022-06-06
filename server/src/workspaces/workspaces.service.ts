@@ -64,10 +64,19 @@ export class WorkspacesService {
   }
 
   async getWorkspaceMembers(url: string) {
-    this.usersRepository
+    return await this.usersRepository
       .createQueryBuilder('u')
       .innerJoin('u.WorkspaceMembers', 'm')
       .innerJoin('m.Workspace', 'w', 'w.url = :url', { url })
       .getMany();
+
+    // return await this.dataSource
+    //   .createQueryBuilder()
+    //   .select('u')
+    //   .from('users', 'u')
+    //   .leftJoin('workspacemembers', 'm', 'u.id = m.UserId')
+    //   .leftJoin('workspaces', 'w', 'm.WorkspaceId = w.id')
+    //   .where('w.url = :url', { url })
+    //   .getMany();
   }
 }

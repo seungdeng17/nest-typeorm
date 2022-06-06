@@ -8,12 +8,14 @@ import { UsersModule } from './users/users.module';
 import { WorkspacesModule } from './workspaces/workspaces.module';
 import { ChannelsModule } from './channels/channels.module';
 import { DmsModule } from './dms/dms.module';
+import { AuthModule } from './auth/auth.module';
 import * as ormconfig from '../ormconfig';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot(ormconfig),
+    AuthModule,
     UsersModule,
     WorkspacesModule,
     ChannelsModule,

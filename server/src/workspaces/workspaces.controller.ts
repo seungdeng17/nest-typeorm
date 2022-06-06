@@ -19,12 +19,12 @@ export class WorkspacesController {
   constructor(private readonly workspacesService: WorkspacesService) {}
 
   @Get()
-  getMyWorkspaces(@User() user: Users, @Body() body: CreateWorkspaceDto) {
+  getMyWorkspaces(@User() user: Users) {
     return this.workspacesService.findMyWorkspaces(user.id);
   }
 
   @Post()
-  createWorkspace() {}
+  createWorkspace(@User() user: Users, @Body() body: CreateWorkspaceDto) {}
 
   @Get(':url/members')
   getAllMembersFromWorkspace() {}

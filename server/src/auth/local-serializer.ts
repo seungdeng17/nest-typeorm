@@ -15,7 +15,7 @@ export class LocalSerializer extends PassportSerializer {
   }
 
   serializeUser(user: Users, done: CallableFunction) {
-    console.log(user);
+    console.log('local-serializer serializeUser: ', user);
     done(null, user.id);
   }
 
@@ -27,7 +27,7 @@ export class LocalSerializer extends PassportSerializer {
         relations: ['Workspaces'],
       })
       .then((user) => {
-        console.log('user', user);
+        console.log('local-serializer deserializeUser: ', user);
         done(null, user);
       })
       .catch((error) => done(error));

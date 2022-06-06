@@ -78,5 +78,27 @@ export class WorkspacesService {
     //   .leftJoin('workspaces', 'w', 'm.WorkspaceId = w.id')
     //   .where('w.url = :url', { url })
     //   .getMany();
+
+    // const queryRunner = this.dataSource.createQueryRunner();
+    // await queryRunner.connect();
+    // await queryRunner.startTransaction();
+    // try {
+    //   const rows = await this.dataSource
+    //     .createQueryBuilder(queryRunner)
+    //     .select('u')
+    //     .from('users', 'u')
+    //     .leftJoin('workspacemembers', 'm', 'u.id = m.UserId')
+    //     .leftJoin('workspaces', 'w', 'm.WorkspaceId = w.id')
+    //     .where('w.url = :url', { url })
+    //     .getMany();
+
+    //   await queryRunner.commitTransaction();
+    //   return rows;
+    // } catch (e) {
+    //   await queryRunner.rollbackTransaction();
+    //   throw e;
+    // } finally {
+    //   await queryRunner.release();
+    // }
   }
 }
